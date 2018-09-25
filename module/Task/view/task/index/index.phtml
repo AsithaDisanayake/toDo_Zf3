@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>      
-      <button class="btn btn-primary "> Add Task</button>
+     <a href="<?php echo $this->basePath('task/add-task')?>" = class="btn btn-primary "> Add Task</a>
       </br></br>
       <?php foreach($tasks as $task):?>
       <tr>
@@ -19,8 +19,8 @@
             <td><?php echo $task->getDescription();?></td>
             <td><?php if($task->getStatus() == 0): echo 'Incomplete'?><?php else: echo 'Completed'?><?php endif;?></td>
             <td>
-            <button class = "btn btn-succes"><i class="glyphicon glyphicon-eye-open"></i>
-            </button></td>        
+            <a href="<?php echo $this->url('task',['action'=>'view-task', 'id'=> $task->getId()]);?>" class = "btn btn-succes"><i class="glyphicon glyphicon-eye-open"></i>
+            </a></td>        
        
       </tr>
       <?php endforeach;?>

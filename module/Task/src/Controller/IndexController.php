@@ -24,8 +24,12 @@ class IndexController extends AbstractActionController
         return new ViewModel(['tasks' => $tasks]);
     }
 
-    public function addAction(){
-        
+    public function addTaskAction(){
+
+        return new ViewModel();
+    }
+
+    public function viewTaskAction(){
         return new ViewModel();
     }
 }

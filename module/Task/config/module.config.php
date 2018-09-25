@@ -27,7 +27,7 @@ return [
             'task' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/task[/:action]',
+                    'route'    => '/task[/:action[/:id]]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
