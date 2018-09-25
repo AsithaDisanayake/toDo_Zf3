@@ -21,10 +21,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {   
         $tasks = $this->table->fetchAll();
-        foreach($tasks as $task){
-            echo $task->getName();
-        }
-        exit();
-        return new ViewModel();
+     
+        return new ViewModel(['tasks' => $tasks]);
     }
 }

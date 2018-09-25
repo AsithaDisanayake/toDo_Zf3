@@ -32,7 +32,7 @@ class Module implements ConfigProviderInterface
                     $adapter = $container->get(AdapterInterface::class);
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Task());
-                    return new TableGateway('task', $adapter, null, $resultSetPrototype);
+                    return new TableGateway('Tasks', $adapter, null, $resultSetPrototype);
                 }
             ]
         ];
