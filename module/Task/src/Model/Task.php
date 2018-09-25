@@ -7,7 +7,7 @@ class Task{
     protected $name;
     protected $description;
     protected $startdate;
-    protected $enddate;
+    protected $status;
 
     public function exchangeArray($data){
 
@@ -16,6 +16,7 @@ class Task{
         $this->description = $data['description'];
         $this->startdate = $data['startdate'];
         $this->enddate = $data['enddate'];
+        $this->status = $data['status'];
 
 
     }
@@ -39,6 +40,10 @@ class Task{
 
     public function getEnddate(){
         return $this->enddate;
+    }
+
+    public function getStatus(){
+        return $this->status;
     }
 
 }

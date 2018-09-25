@@ -18,10 +18,14 @@ class IndexController extends AbstractActionController
         $this->table = $table;                                              
     }
 
-    public function indexAction()
-    {   
+    public function indexAction(){   
         $tasks = $this->table->fetchAll();
      
         return new ViewModel(['tasks' => $tasks]);
+    }
+
+    public function addAction(){
+        
+        return new ViewModel();
     }
 }
