@@ -9,6 +9,8 @@ namespace Task\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Task\Form\TaskForm;
+use Task\Model\Task;
 
 class IndexController extends AbstractActionController
 {
@@ -19,14 +21,37 @@ class IndexController extends AbstractActionController
     }
 
     public function indexAction(){   
-        $tasks = $this->table->fetchAll();
+        $tasks = $this->table->fetchAll(); 
      
         return new ViewModel(['tasks' => $tasks]);
     }
 
-    public function addTaskAction(){
+    public function addTaskAction() {        
+        $form = new TaskForm(); 
+        $request = $this->getRequest();
+        
+        if(!$request->isPost()){
+            return new ViewModel(['form' => $form]);
+        }else{
+            error_log("dfdfgd");
+        }              
+        
+        $task = new Task();
 
-        return new ViewModel();
+        $form->setData($request->getPost());      
+        if($form->isValid()){
+            exit('id is not correct');             
+        }       
+     
+        $task->exchangeArray($form->getData());      
+        $this->table->saveData($task);
+
+        // return $this->redirect()->toRoute(
+        //     'task',[
+        //         'controller'=> 'index', 
+        //         'action' => 'add-task'
+        //     ]);
+        
     }
 
     public function viewTaskAction(){
