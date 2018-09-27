@@ -74,4 +74,43 @@ class IndexController extends AbstractActionController
             'id' => $id  
        ]);
     }
+
+    public function editTaskAction(){
+        
+        $id = (int) $this->params()->fromRoute('id','0');
+       if($id == 0){
+           exit('Error');
+       }
+
+       try{
+            $task= $this->table->getTask($id);
+       }catch(Exception $e){
+            exit('Error');
+       }
+      
+       $form = new TaskForm();
+       $form->bind($task);
+       $request = $this->getRequest();
+       if(!$request->isPost()){
+           return new ViewModel([
+               'form' => $form,
+               'id' => $id
+           ]);
+       }
+
+       $form->setData($request->getPost());
+       if(!$form->isValid()){
+           exit('ERROR !');
+       }
+
+       $this->table->saveData($task);
+            return $this->redirect()->toRoute('task',[
+                'controller' => 'index',
+                'action' => '',
+                'id' => $id
+            ]);
+        
+         
+
+    }
 }

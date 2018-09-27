@@ -46,5 +46,16 @@ class Task{
         return $this->status;
     }
 
+    public function getArrayCopy(){
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'startdate' => $this->startdate,
+            'enddate' => $this->enddate,
+            'status' => $this->status
+        ];
+    }
+
 }
 ?>

@@ -34,7 +34,12 @@
          <td><?php echo $task->getStatus();?></td>
       </tr>
     </tbody>
-  </table>    
+  </table>  
 
-  <a href="<?php echo $this->basePath('/'); ?>" class = "btn btn-submit">Back</a>
+  <div class="btn-group btn-group">
+  <button><a href="<?php echo $this->url('task',['action'=>'edit-task', 'id'=> $task->getId()]);?>" class="glyphicon glyphicon-pencil"></a></button>
+  <button><a href="#" class="glyphicon glyphicon-trash"></a></button>
+  </div>  
+  <br>
+  <a href="<?php echo $this->basePath('/'); ?>" class = "btn btn-primary" style="float:right">Back</a>
 </div>

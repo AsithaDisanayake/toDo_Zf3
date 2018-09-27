@@ -22,7 +22,16 @@
                 'startdate' => $task->getStartDate(),
                 'enddate' => $task->getEnddate(),
             ];
-            return $this->tableGateway->insert($data);
+
+            if($task->getId()){
+                $this->tableGateway->update($data,[
+                    'id' => $task->getId()
+                ]);
+            }else{
+                $this->tableGateway->insert($data);
+            }
+
+            
         }
 
         public function getTask($id){
