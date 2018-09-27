@@ -113,4 +113,14 @@ class IndexController extends AbstractActionController
          
 
     }
+
+    public function deleteAction(){
+        $id = (int) $this->params()->fromRoute('id','0');
+        var_dump($id);
+        $this->_helper->layout()->disableLayout(); 
+        $this->_helper->viewRenderer->setNoRender(true);
+        // $request = $this->getRequest();
+        // $id= $request->getPost('id');
+       
+    }
 }
