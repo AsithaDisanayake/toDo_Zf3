@@ -33,24 +33,24 @@ class IndexController extends AbstractActionController
         if(!$request->isPost()){
             return new ViewModel(['form' => $form]);
         }else{
-            error_log("dfdfgd");
+            
         }              
         
         $task = new Task();
 
         $form->setData($request->getPost());      
-        if($form->isValid()){
+        if(!$form->isValid()){
             exit('id is not correct');             
         }       
      
         $task->exchangeArray($form->getData());      
         $this->table->saveData($task);
 
-        // return $this->redirect()->toRoute(
-        //     'task',[
-        //         'controller'=> 'index', 
-        //         'action' => 'add-task'
-        //     ]);
+        return $this->redirect()->toRoute(
+            'task',[
+                'controller'=> 'index', 
+                'action' => 'add-task'
+            ]);
         
     }
 
