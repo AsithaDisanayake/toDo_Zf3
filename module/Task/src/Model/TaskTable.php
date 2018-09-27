@@ -16,8 +16,6 @@
         }
 
         public function saveData($task){
-            
-             error_log("111111111111111");
             $data = [
                 'name' => $task->getName(),
                 'description' => $task->getDescription(),
@@ -25,6 +23,11 @@
                 'enddate' => $task->getEnddate(),
             ];
             return $this->tableGateway->insert($data);
+        }
+
+        public function getTask($id){
+            $data = $this->tableGateway->select(['id' => $id]);
+            return $data->current();
         }
     }
 

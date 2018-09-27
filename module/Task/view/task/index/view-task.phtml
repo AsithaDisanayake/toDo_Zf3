@@ -1,1 +1,40 @@
-<h1>view</h1>
+<?php
+    $title = 'View Task';
+    $this->headTitle($title);
+?>
+<h2><?php echo $this->escapeHtml($title);?></h2>
+
+<div class = "jumbotron col-md-6">
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td><?php echo $task->getName();?></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><?php echo $task->getDescription();?></td>
+      </tr>
+      <tr>
+        <td>Start Date</td>
+        <td><?php echo $task->getStartdate();?></td>
+      </tr>
+      <tr>
+        <td>End Date</td>
+         <td><?php echo $task->getEnddate();?></td>
+      </tr>
+      <tr>
+        <td>Status</td>
+         <td><?php echo $task->getStatus();?></td>
+      </tr>
+    </tbody>
+  </table>    
+
+  <a href="<?php echo $this->basePath('/'); ?>" class = "btn btn-submit">Back</a>
+</div>

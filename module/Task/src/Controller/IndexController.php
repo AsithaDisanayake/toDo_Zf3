@@ -40,7 +40,10 @@ class IndexController extends AbstractActionController
 
         $form->setData($request->getPost());      
         if(!$form->isValid()){
-            exit('id is not correct');             
+            // echo '<script language="javascript">';
+            // echo 'alert("check the fields")';
+            // echo '</script>';
+            return new ViewModel(['form' => $form]);           
         }       
      
         $task->exchangeArray($form->getData());      
@@ -55,6 +58,20 @@ class IndexController extends AbstractActionController
     }
 
     public function viewTaskAction(){
-        return new ViewModel();
+       $id = (int) $this->params()->fromRoute('id','0');
+       if($id == 0){
+           exit('Error');
+       }
+
+       try{
+            $task= $this->table->getTask($id);
+       }catch(Exception $e){
+            exit('Error');
+       }
+       //var_dump($task);
+       return new viewModel([
+           'task' => $task,
+            'id' => $id  
+       ]);
     }
 }
