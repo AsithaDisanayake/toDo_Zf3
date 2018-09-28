@@ -11,6 +11,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Task\Form\TaskForm;
 use Task\Model\Task;
+use Zend\View\Model\JsonModel; 
 
 class IndexController extends AbstractActionController
 {
@@ -115,12 +116,19 @@ class IndexController extends AbstractActionController
     }
 
     public function deleteAction(){
-        $id = (int) $this->params()->fromRoute('id','0');
-        var_dump($id);
-        $this->_helper->layout()->disableLayout(); 
-        $this->_helper->viewRenderer->setNoRender(true);
-        // $request = $this->getRequest();
-        // $id= $request->getPost('id');
-       
+        $id = (int) $this->params()->fromRoute('id','0');   
+        if($id == 0){
+            exit('Error');
+        }    
+        $delete = $this->table->deleteTask($id);
+        if($delete){
+
+            echo json_encode(array('data' => 'success'));
+            
+            // return new JsonModel(array(
+            //     'data' => 'success',
+            // ));
+        }
+  
     }
-}
+} 

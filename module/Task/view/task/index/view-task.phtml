@@ -38,7 +38,7 @@
 
   <div class="btn-group btn-group">
   <button><a href="<?php echo $this->url('task',['action'=>'edit-task', 'id'=> $task->getId()]);?>" class="glyphicon glyphicon-pencil"></a></button>
-  <button onClick="deleteRow(<?php echo $task->getID()?>)"></button>
+  <button onClick="deleteRow(<?php echo $task->getID()?>)"><i class="glyphicon glyphicon-trash"></i></button>
   </div>  
   <br>
   <a href="<?php echo $this->basePath('/'); ?>" class = "btn btn-primary" style="float:right">Back</a>
@@ -47,18 +47,23 @@
 
 <script type="text/javascript">
 function deleteRow(id) {
-        var baseurl = '<?php echo $this->basePath();?>';
-        
-        $.ajax({
-        url: baseurl+"/task/delete/"+id,
-        type:'GET',
-        success:function(res){
-        if(res == 'success'){
-          alert("row deleted successfully");
-       } else {
-         alert("failed to delete row");
-       }
-       }
-      });
+        if(confirm('are you sure want to delete this task')){
+          var baseurl = '<?php echo $this->basePath();?>';
+          $.ajax({
+          url: baseurl+"/task/delete/"+id,
+          type:'GET',
+          success:function(res){
+          console.log(res);
+            
+          if(res){
+            window.location.href = '/';
+          }else{
+            alert('Task Can not be deleted');
+          }
+          
+        }
+        });
+  }       
 }
-    </script>
+
+</script>

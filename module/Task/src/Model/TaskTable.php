@@ -38,6 +38,14 @@
             $data = $this->tableGateway->select(['id' => $id]);
             return $data->current();
         }
+
+        public function deleteTask($id){
+          
+            $this->tableGateway->delete([
+                'id' => $id
+            ]);
+        }
+
     }
 
 

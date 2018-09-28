@@ -32,3 +32,25 @@
 </div>
 
 
+<script type="text/javascript">
+function completeTask(id) {
+        if(confirm('are you sure want to delete this task')){
+          var baseurl = '<?php echo $this->basePath();?>';
+          $.ajax({
+          url: baseurl+"/task/delete/"+id,
+          type:'GET',
+          success:function(res){
+          console.log(res);
+            
+          if(res){
+            window.location.href = '/';
+          }else{
+            alert('Task Can not be deleted');
+          }
+          
+        }
+        });
+  }       
+}
+
+</script>
