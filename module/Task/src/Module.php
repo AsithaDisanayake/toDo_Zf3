@@ -43,7 +43,7 @@ class Module implements ConfigProviderInterface
             'factories'=>[
                 Controller\IndexController::class =>function($container){
                     return new Controller\IndexController($container->get(Model\TaskTable::class));
-                }
+                }    
             ]
         ];
     }

@@ -116,12 +116,34 @@ class IndexController extends AbstractActionController
     }
 
     public function deleteAction(){
+        // $viewRender = $this->getServiceLocator()->get('ViewRenderer');
+        // $html = $viewRender->render($viewModel);
         $id = (int) $this->params()->fromRoute('id','0');   
         if($id == 0){
             exit('Error');
         }    
         $delete = $this->table->deleteTask($id);
         if($delete){
+
+            echo json_encode(array('data' => 'success'));
+            $jsonData = json_encode(array('data' => 'success'));
+            $view = new JsonModel($jsonData); 
+            $view->setTerminal(true); 
+            return view;
+            //  return new JsonModel(array(
+            //     'data' => 'success',
+            // ));
+        }
+  
+    }
+
+    public function completeAction(){
+        $id = (int) $this->params()->fromRoute('id','0');   
+        if($id == 0){
+            exit('Error');
+        }    
+        $complete = $this->table->completeTask($id);
+        if($complete){
 
             echo json_encode(array('data' => 'success'));
             

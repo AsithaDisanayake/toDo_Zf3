@@ -15,7 +15,7 @@
       </br></br>
       <?php foreach($tasks as $task):?>
       <tr>
-            <td><?php echo $task->getName();?></td>
+            <td onClick="completeTask(<?php echo $task->getID()?>)"><?php echo $task->getName();?></td>
             <td><?php echo $task->getDescription();?></td>
             <td><?php if($task->getStatus() == 0): echo 'Incomplete'?><?php else: echo 'Completed'?><?php endif;?></td>
             <td>
@@ -37,7 +37,7 @@ function completeTask(id) {
         if(confirm('are you sure want to delete this task')){
           var baseurl = '<?php echo $this->basePath();?>';
           $.ajax({
-          url: baseurl+"/task/delete/"+id,
+          url: baseurl+"/task/complete/"+id,
           type:'GET',
           success:function(res){
           console.log(res);
@@ -45,7 +45,7 @@ function completeTask(id) {
           if(res){
             window.location.href = '/';
           }else{
-            alert('Task Can not be deleted');
+            
           }
           
         }
